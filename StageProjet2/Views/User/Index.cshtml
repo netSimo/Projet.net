@@ -1,0 +1,70 @@
+﻿@model IEnumerable<StageProjet2.ViewModel.UserViewModel>
+
+   
+
+
+
+    <br />
+    <br />
+    <div>
+    <h1 class="text-info text-center"> Liste des utilisateurs </h1>
+    <hr />
+
+    <a class="btn btn-outline-info" asp-area="Identity" asp-page="/Account/Register">Ajouter utilisateur <i class="bi bi-person-add"></i> </a>
+    
+     <hr />
+<table class="table table-info mt-4">
+    <thead>
+        <tr class="bg-primary text-white">
+
+            <th>   Nom  </th>
+            <th>   Prenom  </th>
+            <th>   Email   </th>
+            <th>   Numero de telephone   </th>
+            <th>   Roles  </th>
+            <th>   Action   </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-light">
+                <td> @item.Nom</td>
+                <td> @item.Prenom</td>
+                <td> @item.Email</td>
+               <td> @item.PhoneNumber</td>
+              @*<td> @string.Join(" ",item.Role.ToList())</td>*@
+
+                    @if (string.Join(" ",item.Role.ToList())=="Admin" )
+                    {
+                        <td>
+                            <span class="badge rounded-pill bg-dark"> @string.Join(" ",item.Role.ToList()) </span>
+                        </td>
+                    }
+                    @if (string.Join(" ", item.Role.ToList()) == "Caissier")
+                    {
+                        <td>
+                            <span class="badge rounded-pill bg-warning"> @string.Join(" ",item.Role.ToList()) </span>
+                        </td>
+                    }
+
+                    @if (string.Join(" ", item.Role.ToList()) == "Releveur")
+                    {
+                        <td>
+                            <span class="badge rounded-pill bg-secondary"> @string.Join(" ",item.Role.ToList()) </span>
+                        </td>
+                    }
+
+                    <td>
+                        <a class="btn btn-primary" asp-controller="User" asp-action="Edit" asp-route-userId="@item.Id">Modifier<i class="bi bi-pencil-square"></i></a>
+                        | <a class="btn btn-danger" asp-controller="User" asp-action="Delete" asp-route-userId="@item.Id">Supprimer <i class="bi bi-trash3-fill"></i> </a>
+                    </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+</div>
+

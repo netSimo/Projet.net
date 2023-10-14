@@ -1,0 +1,69 @@
+﻿@model StageProjet2.ViewModel.AdherentCompteurViewModel
+
+
+<br />
+<br />
+
+<h1 class="text-info text-center ">Ajouter adherent </h1> 
+
+
+<hr />
+<div class="row">
+
+
+
+    <div class="col-md-4  container">
+        <form asp-action="Create"   method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nom" class="control-label"></label>
+                <input asp-for="Nom" class="form-control" />
+                <span asp-validation-for="Nom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prenom" class="control-label"></label>
+                <input asp-for="Prenom" class="form-control" />
+                <span asp-validation-for="Prenom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adresse" class="control-label"></label>
+                <input asp-for="Adresse" class="form-control" />
+                <span asp-validation-for="Adresse" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Num" class="control-label"></label>
+                <input asp-for="Num" class="form-control" />
+                <span asp-validation-for="Num" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Compteur" class="control-label"></label>
+                <input asp-for="Compteur" class="form-control" />
+                <span asp-validation-for="Compteur" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompteurMarque" class="control-label"></label>
+                <input asp-for="CompteurMarque" class="form-control" />
+                <span asp-validation-for="CompteurMarque" class="text-danger"></span>
+            </div>
+           
+
+            <div class="form-group">
+                <button type="submit" class=" w-100 btn btn-lg   btn btn-info my-4"> Ajouter <i class="bi bi-person-add"></i> </button>
+                @*<input type="submit" value="Ajouter" class=" w-100 btn btn-lg   btn btn-info my-4" />*@
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr />
+
+
+<div>
+    <a asp-action="Index" class="btn btn-outline-dark"> <i class="bi bi-arrow-left-circle-fill"></i> retour vers la liste </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

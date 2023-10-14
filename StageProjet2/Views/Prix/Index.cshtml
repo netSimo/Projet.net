@@ -1,0 +1,75 @@
+﻿@model IEnumerable<StageProjet2.Models.Prix>
+
+
+    <br />
+    <br />
+
+<h1 class="text-info text-center"> Prix</h1>
+
+<hr />
+
+<div>
+    <a class="btn btn-outline-info" asp-action="Edit" >Ajouter <i class="bi bi-pencil-square"></i></a>
+</div>
+<br />
+<table class="table table-info">
+    <thead>
+        <tr class="bg-primary text-white">
+            <th>
+                Prix tranche 1
+                @*@Html.DisplayNameFor(model => model.Prixtranche1)*@
+            </th>
+            <th>
+                Prix tranche 2
+                @*@Html.DisplayNameFor(model => model.Prixtranche2)*@
+            </th>
+            <th>
+                Prix tranche 3
+                @*@Html.DisplayNameFor(model => model.Prixtranche3)*@
+            </th>
+            <th>
+                date de modification 
+                @*@Html.DisplayNameFor(model => model.DateTimePrix)*@
+            </th>
+            <th> Etat </th>
+@*            <th></th>
+*@        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            <tr class="table-light">
+            <td>
+                @Html.DisplayFor(modelItem => item.Prixtranche1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prixtranche2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prixtranche3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimePrix)
+            </td>
+
+                @if (item.etat == "Actuelle")
+                {
+                    <td>
+                        <span class="badge rounded-pill bg-success">@Html.DisplayFor(modelItem => item.etat)  <i class="bi bi-check-circle"></i> </span>
+                    </td>
+                }
+                @if (item.etat == "Ancienne")
+                {
+                    <td>
+                        <span class="badge rounded-pill bg-warning">@Html.DisplayFor(modelItem => item.etat)  <i class="bi bi-check-circle"></i> </span>
+                    </td>
+                }
+                
+
+            @*<td>
+                    <a class="btn btn-outline-info" asp-action="Edit" asp-route-id="@item.Id">Modifier <i class="bi bi-pencil-square"></i></a>
+
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,50 @@
+﻿@model StageProjet2.ViewModel.PrixView
+
+
+<br />
+<br />
+<h1 class=" text-info text-center">Modifier les Prix</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4 container">
+        <form asp-action="Edit" method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="Prixtranche1" class="control-label"></label>
+                <input asp-for="Prixtranche1" class="form-control" />
+                <span asp-validation-for="Prixtranche1" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Prixtranche2" class="control-label"></label>
+                <input asp-for="Prixtranche2" class="form-control" />
+                <span asp-validation-for="Prixtranche2" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Prixtranche3" class="control-label"></label>
+                <input asp-for="Prixtranche3" class="form-control" />
+                <span asp-validation-for="Prixtranche3" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Enregistrer" class="w-100 btn btn-lg   btn btn-info my-4" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr />
+
+<div>
+    <a asp-action="Index" class="btn btn-outline-dark"> <i class="bi bi-arrow-left-circle-fill"></i> retour vers la liste </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

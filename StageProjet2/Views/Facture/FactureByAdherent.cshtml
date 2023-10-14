@@ -1,0 +1,119 @@
+﻿@model IEnumerable<StageProjet2.Models.Facture>
+
+
+
+    <br />
+    <br />
+
+<h2 class=" text-info text-center">La liste des factures d'un adherent </h2>
+
+<hr />
+
+@if (!Model.Any())
+{
+    <p> Factures = 0</p>
+
+}
+else
+{
+    
+   
+   
+    <table class="table table-info ">
+        <thead>
+            <tr class=" bg-primary text-white">
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.AncienValeur)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NouvelleValeur)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FactureDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.prix)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Etat)
+                </th>
+                <th>     </th>
+                <th>     </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class=" table-light">
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AncienValeur)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NouvelleValeur)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FactureDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.prix)
+                    </td>
+                    @if (item.Etat == "Payee")
+                    {
+                        <td>
+                            <span class="badge rounded-pill bg-success">@Html.DisplayFor(modelItem => item.Etat)</span>
+
+                        </td>
+
+                    }
+                    else
+                    {
+                        <td>
+                            <span class="badge rounded-pill bg-danger">@Html.DisplayFor(modelItem => item.Etat)</span>
+
+                        </td>
+                        
+                    }
+
+                    @if (item.Etat == "Payee")
+                    {
+                        <td></td>
+                        <td></td>
+
+
+                    }
+                    else
+                    {
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class=" btn btn-outline-info">Payee facture</a>
+
+                        </td>
+
+                        <td>
+                            <a asp-action="GeneratePDf" asp-route-id="@item.Id" class=" btn btn-outline-danger"> facture PDF <i class="bi bi-file-earmark-pdf"></i> </a>
+
+                        </td>
+
+                    }
+
+                </tr>
+
+                
+            }
+        </tbody>
+
+    </table>
+    
+
+    <hr />
+
+    <div>
+
+        <a asp-controller="Adherent" asp-action="Index" class="btn btn-outline-dark"> <i class="bi bi-arrow-left-circle-fill"></i> Liste des adherents</a>
+       
+    </div>
+}
+
+
+

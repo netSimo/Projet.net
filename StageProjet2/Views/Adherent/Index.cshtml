@@ -1,0 +1,134 @@
+﻿@model IEnumerable<StageProjet2.Models.Adherent>
+
+
+
+    <br />
+    <br />
+
+<h1 class="text-info text-center">Liste des adherents</h1>
+
+<hr />
+@if (TempData["AlerMessage1"] != null)
+{
+    <div class=" alert alert-danger">
+
+        <strong> Error ! </strong> @TempData["AlerMessage1"];
+
+    </div>
+
+}
+
+
+
+<div class="container">
+    
+    <div class="row justify-content-end">
+       
+        <div class="col-lg-4 col-md-6 mt-4">
+           <form asp-action="Index" method="get" class="d-flex">
+    <div class="form-group">
+        <label for="SearchString"> </label>
+        <input type="text" name="SearchString" placeholder="Nom" />
+                    @*<input type="submit" value="Search" class="btn btn-secondary my-2 my-sm-0"   />*@
+                    <button type="submit" class="btn btn-secondary my-2 my-sm-0"> Search <i class="bi bi-search"></i></button>
+
+
+   </div>
+    
+</form>
+</div>
+</div>
+</div>
+
+<hr />
+
+                         @if (User.IsInRole("Admin"))
+                        {
+<div>
+    <a class=" btn btn-outline-info my-4" asp-action="Create">ajouter adherent <i class="bi bi-person-add"></i>  </a>
+</div>
+                        }
+
+@if (!Model.Any())
+{
+    <p> Adherent = 0</p>
+
+}
+else
+{
+    <table class="table table-info  ">
+        <thead>
+            <tr class=" bg-primary text-white">
+                <th>
+                    @Html.DisplayNameFor(model => model.Nom)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Prenom)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Adresse)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Num)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Compteur)
+                </th>
+                <th class="text-center">    Action </th>
+                <th>     </th>
+
+
+                @if (TempData["AlerMessage1"] != null) {<th> </th>}
+               
+                    
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table-light">
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.Nom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Prenom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Adresse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Num)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Compteur.Libelle)
+                    </td>
+                    <td  class="text-center">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class=" btn btn-primary ">Modifier <i class="bi bi-pencil-square"></i></a> |
+
+                        <a asp-action="Delete" asp-route-id="@item.Id" class=" btn btn-danger  ">Supprimer <i class="bi bi-trash3-fill"> </i> </a>
+                    </td>
+
+                    <td>
+                        <a class="btn btn-outline-info" asp-controller="Facture" asp-action="FactureByAdherent" asp-route-id="@item.Id">Factures <i class="bi bi-receipt"></i> </a>
+
+                    </td>
+
+                    @if (TempData["AlerMessage1"] != null)
+                    {
+                        <td>
+                            <a class="btn btn-outline-danger" asp-controller="Adherent" asp-action="DeleteALLFactures" asp-route-id="@item.Id">Supprimer Tous</a>
+
+                        </td>
+                        
+
+                    }
+
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
+

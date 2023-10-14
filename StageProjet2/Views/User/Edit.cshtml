@@ -1,0 +1,54 @@
+﻿@model StageProjet2.ViewModel.UserViewModel
+
+
+
+<br />
+<br />
+<h1 class=" text-info text-center">Modifier Utilisateur</h1>
+
+
+<hr />
+
+
+
+<div class="row">
+    <div class="col-md-4 container">
+<form asp-action="Edit" method="post">
+   
+    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-floating mb-3">
+        <input asp-for="Nom" class="form-control" placeholder="Nom" />
+        <label asp-for="Nom" class="form-label"></label>
+        <span asp-validation-for="Nom" class="text-danger"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Prenom" class="form-control" placeholder="Nom" />
+        <label asp-for="Prenom" class="form-label"></label>
+        <span asp-validation-for="Prenom" class="text-danger"></span>
+    </div> 
+
+    <div class="form-floating mb-3">
+        <input asp-for="PhoneNumber" class="form-control" placeholder="Nom" />
+        <label asp-for="PhoneNumber" class="form-label"></label>
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input asp-for="Email" class="form-control" placeholder="Nom" />
+        <label asp-for="Email" class="form-label"></label>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+ 
+
+    <button  type="submit" class="w-100 btn btn-lg btn-primary">Modifier</button>
+</form>
+</div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

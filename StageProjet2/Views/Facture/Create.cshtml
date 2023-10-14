@@ -1,0 +1,81 @@
+﻿@model StageProjet2.ViewModel.FactureView
+
+
+<br />
+<br />
+
+<h1 class="text-info text-center">Nouvelle facture</h1>
+
+
+<hr />
+
+@if (TempData["AlerMessage"] != null) 
+{
+    <div class=" alert alert-danger">
+
+    <strong> Error ! </strong> @TempData["AlerMessage"];
+
+    </div>
+    
+}
+
+<div class="row">
+
+        <div class="col-md-4  container">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Libelle" class="control-label"></label>
+                <input asp-for="Libelle" class="form-control" />
+                <span asp-validation-for="Libelle" class="text-danger"></span>
+            </div>
+
+           
+
+            <div class="form-group">
+                <label asp-for="NouvelleValeur" class="control-label"></label>
+                <input asp-for="NouvelleValeur" class="form-control" />
+                <span asp-validation-for="NouvelleValeur" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FactureDate" class="control-label"></label>
+                <input asp-for="FactureDate" class="form-control" />
+                <span asp-validation-for="FactureDate" class="text-danger"></span>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <button type="submit" class=" w-100 btn btn-lg   btn btn-info my-4"> Nouvelle facture <i class="bi bi-file-earmark-plus"></i>  </button>
+                @*<input type="submit" value="Nouvelle facture" class="w-100 btn btn-lg   btn btn-info my-4" />*@
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<hr />
+
+<br />
+<br />
+<br />
+
+<div>
+
+    <div class="container">
+        <form method="post" asp-controller="Facture" asp-action="ImportExcelFile" enctype="multipart/form-data">
+            <input  type="file" name="file" />
+            <button type="submit" class=" btn btn-outline-success"> Importer fichier Excel  <i class="bi bi-file-earmark-excel-fill"></i> </button>
+
+        </form>
+
+    </div>
+
+    @*<a asp-action="Index" class="btn btn-outline-dark"> <i class="bi bi-arrow-left-circle-fill"></i> retour vers la liste </a>*@
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

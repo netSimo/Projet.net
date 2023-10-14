@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\StageProjet2.props" />
+</Project>
